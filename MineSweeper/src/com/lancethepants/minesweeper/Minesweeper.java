@@ -1,5 +1,7 @@
 package com.lancethepants.minesweeper;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -15,10 +17,22 @@ public class Minesweeper {
 	static JFrame selectionFrame = new JFrame();
 
 	public static void main(String[] args) {
+		
+		// Get the size of the screen
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
 		selectionFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		selectionFrame.setVisible(true);
 		selectionFrame.setSize(300, 440);
+		
+		// Determine the new location of the window
+		int w = selectionFrame.getSize().width;
+		int h = selectionFrame.getSize().height;
+		int x = (dim.width/2)-(w/2);
+		int y = (dim.height/2)-(h/2);
+		
+		// Move the window
+		selectionFrame.setLocation(x, y);
+		selectionFrame.setVisible(true);
 
 		JPanel selectionPanel = new JPanel();
 		JButton Beginner = new JButton("Beginner");
@@ -68,12 +82,12 @@ public class Minesweeper {
 			public void mouseClicked(MouseEvent e) {
 
 				selectionFrame.setVisible(false);
-				gameFrame.dispose();
 				gameFrame = new JFrame();
 				gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				gameFrame.setVisible(true);
 				gameFrame.setSize(243, 265);
 				gameFrame.add(new Board(9, 9, 10));
+				
+				setBounds();
 			}
 		});
 
@@ -99,12 +113,12 @@ public class Minesweeper {
 			public void mouseClicked(MouseEvent arg0) {
 
 				selectionFrame.setVisible(false);
-				gameFrame.dispose();
 				gameFrame = new JFrame();
 				gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				gameFrame.setVisible(true);
 				gameFrame.setSize(418, 440);
 				gameFrame.add(new Board(16, 16, 40));
+				
+				setBounds();
 
 			}
 		});
@@ -130,12 +144,12 @@ public class Minesweeper {
 			public void mouseClicked(MouseEvent e) {
 
 				selectionFrame.setVisible(false);
-				gameFrame.dispose();
 				gameFrame = new JFrame();
 				gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				gameFrame.setVisible(true);
 				gameFrame.setSize(768, 440);
 				gameFrame.add(new Board(30, 16, 99));
+				
+				setBounds();
 			}
 		});
 
@@ -162,5 +176,20 @@ public class Minesweeper {
 		gameFrame.dispose();
 		selectionFrame.setVisible(true);
 		Board.gameOver = false;
+	}
+	
+	public static void setBounds() {
+		
+		// Get the size of the screen
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		
+		// Determine the new location of the window
+		int w = gameFrame.getSize().width;
+		int h = gameFrame.getSize().height;
+		int x = (dim.width/2)-(w/2);
+		int y = (dim.height/2)-(h/2);
+		// Move the window
+		gameFrame.setLocation(x, y);
+		gameFrame.setVisible(true);
 	}
 }
