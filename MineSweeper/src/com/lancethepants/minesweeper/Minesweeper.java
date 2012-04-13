@@ -2,6 +2,8 @@ package com.lancethepants.minesweeper;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -11,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
-public class Minesweeper {
+public class Minesweeper implements ComponentListener {
 
 	static JFrame gameFrame = new JFrame();
 	static JFrame selectionFrame = new JFrame("Minesweeper - By Lance");
@@ -205,5 +207,29 @@ public class Minesweeper {
 		// Move the window
 		gameFrame.setLocation(x, y);
 		gameFrame.setVisible(true);
+	}
+
+	@Override
+	public void componentHidden(ComponentEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void componentMoved(ComponentEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void componentResized(ComponentEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void componentShown(ComponentEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
