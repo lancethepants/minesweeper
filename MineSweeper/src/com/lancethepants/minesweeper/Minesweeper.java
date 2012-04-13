@@ -22,7 +22,7 @@ public class Minesweeper {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
 		selectionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		selectionFrame.setSize(300, 440);
+		selectionFrame.setSize(300, 300);
 		
 		// Determine the new location of the window
 		int w = selectionFrame.getSize().width;
@@ -47,16 +47,18 @@ public class Minesweeper {
 		selectionPanel.add(Advanced);
 		selectionFrame.add(selectionPanel);
 
-		layout.putConstraint(SpringLayout.NORTH, Beginner, 100,
+		layout.putConstraint(SpringLayout.NORTH, Beginner, 50,
 				SpringLayout.NORTH, selectionPanel);
 		layout.putConstraint(SpringLayout.EAST, Beginner, -50,
 				SpringLayout.EAST, selectionPanel);
+		
 		layout.putConstraint(SpringLayout.NORTH, Intermediate, 75,
 				SpringLayout.NORTH, Beginner);
-		layout.putConstraint(SpringLayout.NORTH, Advanced, 75,
-				SpringLayout.NORTH, Intermediate);
 		layout.putConstraint(SpringLayout.WEST, Intermediate, 0,
 				SpringLayout.WEST, Beginner);
+		
+		layout.putConstraint(SpringLayout.NORTH, Advanced, 75,
+				SpringLayout.NORTH, Intermediate);
 		layout.putConstraint(SpringLayout.WEST, Advanced, 0, SpringLayout.WEST,
 				Intermediate);
 
