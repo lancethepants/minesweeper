@@ -15,6 +15,9 @@ public class Minesweeper {
 
 	static JFrame gameFrame = new JFrame();
 	static JFrame selectionFrame = new JFrame("Minesweeper - By Lance");
+	private static int Beginner_North;
+	private static int Intermediate_North;
+	private static int Advanced_North;
 
 	public static void main(String[] args) {
 		
@@ -46,19 +49,25 @@ public class Minesweeper {
 		selectionPanel.add(Intermediate);
 		selectionPanel.add(Advanced);
 		selectionFrame.add(selectionPanel);
-
-		layout.putConstraint(SpringLayout.NORTH, Beginner, 50,
-				SpringLayout.NORTH, selectionPanel);
-		layout.putConstraint(SpringLayout.EAST, Beginner, -50,
-				SpringLayout.EAST, selectionPanel);
 		
-		layout.putConstraint(SpringLayout.NORTH, Intermediate, 75,
-				SpringLayout.NORTH, Beginner);
+		Beginner_North = h/6;
+		
+		Intermediate_North = h/3;
+		
+		Advanced_North = h/2;
+
+		layout.putConstraint(SpringLayout.NORTH, Beginner, Beginner_North,
+				SpringLayout.NORTH, selectionPanel);
+		layout.putConstraint(SpringLayout.WEST, Beginner, 50,
+				SpringLayout.WEST, selectionPanel);
+		
+		layout.putConstraint(SpringLayout.NORTH, Intermediate, Intermediate_North,
+				SpringLayout.NORTH, selectionPanel);
 		layout.putConstraint(SpringLayout.WEST, Intermediate, 0,
 				SpringLayout.WEST, Beginner);
 		
-		layout.putConstraint(SpringLayout.NORTH, Advanced, 75,
-				SpringLayout.NORTH, Intermediate);
+		layout.putConstraint(SpringLayout.NORTH, Advanced, Advanced_North,
+				SpringLayout.NORTH, selectionPanel);
 		layout.putConstraint(SpringLayout.WEST, Advanced, 0, SpringLayout.WEST,
 				Intermediate);
 
