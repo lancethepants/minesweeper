@@ -13,13 +13,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
-public class Minesweeper implements ComponentListener {
+public class Minesweeper {
 
 	static JFrame gameFrame = new JFrame();
 	static JFrame selectionFrame = new JFrame("Minesweeper - By Lance");
-	private static int Beginner_North;
-	private static int Intermediate_North;
-	private static int Advanced_North;
 
 	public static void main(String[] args) {
 		
@@ -27,6 +24,7 @@ public class Minesweeper implements ComponentListener {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
 		selectionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		selectionFrame.setResizable(false);
 		selectionFrame.setSize(300, 300);
 		
 		// Determine the new location of the window
@@ -51,27 +49,21 @@ public class Minesweeper implements ComponentListener {
 		selectionPanel.add(Intermediate);
 		selectionPanel.add(Advanced);
 		selectionFrame.add(selectionPanel);
-		
-		Beginner_North = h/6;
-		
-		Intermediate_North = h/3;
-		
-		Advanced_North = h/2;
 
-		layout.putConstraint(SpringLayout.NORTH, Beginner, Beginner_North,
-				SpringLayout.NORTH, selectionPanel);
-		layout.putConstraint(SpringLayout.WEST, Beginner, 50,
-				SpringLayout.WEST, selectionPanel);
+		layout.putConstraint(SpringLayout.NORTH, Beginner, 68,
+				SpringLayout.NORTH, selectionFrame);
+		layout.putConstraint(SpringLayout.WEST, Beginner, 110,
+				SpringLayout.WEST, selectionFrame);
 		
-		layout.putConstraint(SpringLayout.NORTH, Intermediate, Intermediate_North,
-				SpringLayout.NORTH, selectionPanel);
-		layout.putConstraint(SpringLayout.WEST, Intermediate, 0,
+		layout.putConstraint(SpringLayout.NORTH, Intermediate, 50,
+				SpringLayout.NORTH, Beginner);
+		layout.putConstraint(SpringLayout.WEST, Intermediate, -10,
 				SpringLayout.WEST, Beginner);
 		
-		layout.putConstraint(SpringLayout.NORTH, Advanced, Advanced_North,
-				SpringLayout.NORTH, selectionPanel);
-		layout.putConstraint(SpringLayout.WEST, Advanced, 0, SpringLayout.WEST,
-				Intermediate);
+		layout.putConstraint(SpringLayout.NORTH, Advanced, 50,
+				SpringLayout.NORTH, Intermediate);
+		layout.putConstraint(SpringLayout.WEST, Advanced, -1, 
+				SpringLayout.WEST, Beginner);
 
 		Beginner.addMouseListener(new MouseListener() {
 
@@ -97,8 +89,9 @@ public class Minesweeper implements ComponentListener {
 				selectionFrame.setVisible(false);
 				gameFrame = new JFrame();
 				gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				gameFrame.setResizable(false);
 				gameFrame.setTitle("Beginner");
-				gameFrame.setSize(243, 265);
+				gameFrame.setSize(231, 253);
 				gameFrame.add(new Board(9, 9, 10));
 				
 				setBounds();
@@ -129,8 +122,9 @@ public class Minesweeper implements ComponentListener {
 				selectionFrame.setVisible(false);
 				gameFrame = new JFrame();
 				gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				gameFrame.setResizable(false);
 				gameFrame.setTitle("Intermediate");
-				gameFrame.setSize(418, 440);
+				gameFrame.setSize(406, 428);
 				gameFrame.add(new Board(16, 16, 40));
 				
 				setBounds();
@@ -161,12 +155,42 @@ public class Minesweeper implements ComponentListener {
 				selectionFrame.setVisible(false);
 				gameFrame = new JFrame();
 				gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				gameFrame.setResizable(false);
 				gameFrame.setTitle("Advanced");
-				gameFrame.setSize(768, 440);
+				gameFrame.setSize(756, 428);
 				gameFrame.add(new Board(30, 16, 99));
 				
 				setBounds();
 			}
+		});
+		
+		selectionFrame.addComponentListener(new ComponentListener() {
+
+			@Override
+			public void componentHidden(ComponentEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void componentMoved(ComponentEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void componentResized(ComponentEvent e) {
+				int w = selectionFrame.getSize().width;
+				int h = selectionFrame.getSize().height;
+				
+			}
+
+			@Override
+			public void componentShown(ComponentEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
 		});
 
 	}
@@ -207,29 +231,5 @@ public class Minesweeper implements ComponentListener {
 		// Move the window
 		gameFrame.setLocation(x, y);
 		gameFrame.setVisible(true);
-	}
-
-	@Override
-	public void componentHidden(ComponentEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void componentMoved(ComponentEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void componentResized(ComponentEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void componentShown(ComponentEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 }
