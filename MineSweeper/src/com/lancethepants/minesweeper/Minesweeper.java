@@ -14,14 +14,14 @@ import javax.swing.SpringLayout;
 public class Minesweeper {
 
 	static JFrame gameFrame = new JFrame();
-	static JFrame selectionFrame = new JFrame();
+	static JFrame selectionFrame = new JFrame("Minesweeper - By Lance");
 
 	public static void main(String[] args) {
 		
 		// Get the size of the screen
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
-		selectionFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		selectionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		selectionFrame.setSize(300, 440);
 		
 		// Determine the new location of the window
@@ -36,7 +36,7 @@ public class Minesweeper {
 
 		JPanel selectionPanel = new JPanel();
 		JButton Beginner = new JButton("Beginner");
-		JButton Intermediate = new JButton("Intermedieate");
+		JButton Intermediate = new JButton("Intermediate");
 		JButton Advanced = new JButton("Advanced");
 
 		SpringLayout layout = new SpringLayout();
@@ -84,6 +84,7 @@ public class Minesweeper {
 				selectionFrame.setVisible(false);
 				gameFrame = new JFrame();
 				gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				gameFrame.setTitle("Beginner");
 				gameFrame.setSize(243, 265);
 				gameFrame.add(new Board(9, 9, 10));
 				
@@ -115,6 +116,7 @@ public class Minesweeper {
 				selectionFrame.setVisible(false);
 				gameFrame = new JFrame();
 				gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				gameFrame.setTitle("Intermediate");
 				gameFrame.setSize(418, 440);
 				gameFrame.add(new Board(16, 16, 40));
 				
@@ -146,6 +148,7 @@ public class Minesweeper {
 				selectionFrame.setVisible(false);
 				gameFrame = new JFrame();
 				gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				gameFrame.setTitle("Advanced");
 				gameFrame.setSize(768, 440);
 				gameFrame.add(new Board(30, 16, 99));
 				
